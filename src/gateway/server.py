@@ -2,13 +2,13 @@ import os, gridfs, pika, json
 from flask import Flask, request
 from flask_pymongo import PyMongo
 from auth import validate
-from auth_sync import access
+from auth_service import access
 from storage import util
 
 server = Flask(__name__)
 server.config["MONGO_URI"] = "mongodb://host.minikube.internal:27017/videos"
 
-mongo = PyMongo(server)
+mongo = PyMongo(server, uri="mongodb://host.minikube.internal:27017/videos")
 
 fs = gridfs.GridFS(mongo.db)
 
