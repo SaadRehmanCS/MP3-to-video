@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { encode } from "base-64";
 import { useNavigate } from 'react-router';
 import { HOME } from '../constants/routes'
@@ -7,7 +7,6 @@ function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [jwt, setJwt] = useState("");
 
     const handleEmail = (event) => {
         setEmail(event.target.value);
@@ -28,7 +27,6 @@ function Login() {
                 })
             }).then((res) => res.text()
             ).then((data) => {
-                setJwt(data)
                 console.log(data);
                 navigate(HOME, {state: data});
             }
